@@ -16,6 +16,11 @@ def save_image(image_url, image_name):
     else:
         print(f"Erreur lors du téléchargement de l'image {image_url}. Code d'état : {response.status_code}")
 
+def save_book_info(book_info, file_path):
+    with open(file_path, 'a', encoding='utf-8') as file:
+        file.write(book_info)
+        file.write('\n\n')
+
 def get_book_info(book_url):
     response = requests.get(book_url)
 
@@ -36,18 +41,23 @@ def get_book_info(book_url):
 
         save_image(image_url, image_name)
 
-        print("Product Page URL:", product_page_url)
-        print("UPC:", upc)
-        print("Title:", title)
-        print("Price (Including Tax):", price_including_tax)
-        print("Price (Excluding Tax):", price_excluding_tax)
-        print("Number Available:", number_available)
-        print("Product Description:", product_description)
-        print("Category:", category)
-        print("Review Rating:", review_rating)
-        print("Image URL:", image_url)
-        print("Image saved as:", image_name)
-        print("\n")
+        book_info = (
+            f"Product Page URL: {product_page_url}\n"
+            f"UPC: {upc}\n"
+            f"Title: {title}\n"
+            f"Price (Including Tax): {price_including_tax}\n"
+            f"Price (Excluding Tax): {price_excluding_tax}\n"
+            f"Number Available: {number_available}\n"
+            f"Product Description: {product_description}\n"
+            f"Category: {category}\n"
+            f"Review Rating: {review_rating}\n"
+            f"Image URL: {image_url}\n"
+            f"Image saved as: {image_name}\n"
+        )
+
+        save_book_info(book_info, os.path.join("generated_datas", "book_info.txt"))
+
+        print("Informations du livre sauvegardées dans generated_datas/book_info.txt\n")
     else:
         print(f"Erreur lors de la requête pour {book_url}. Code d'état : {response.status_code}")
 
@@ -75,4 +85,6 @@ def scrape_category_pages(base_url):
             break
 
 base_url = 'https://books.toscrape.com/catalogue/category/books/mystery_3'
+# Créez le dossier "generated_datas" s'il n'existe pas déjà
+os.makedirs("generated_datas", exist_ok=True)
 scrape_category_pages(base_url)
