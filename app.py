@@ -81,8 +81,9 @@ def scrape_category_pages(base_url):
 
             current_page += 1
         else:
-            print(f"Erreur lors de la requête pour {url}. Code d'état : {response.status_code}")
-            break
+            print(f"Plus de livre à scrapper")
+            if response.status_code == 404:
+                break  # Arrêtez la boucle si la page demandée n'existe pas
 
 base_url = 'https://books.toscrape.com/catalogue/category/books/mystery_3'
 # Créez le dossier "generated_datas" s'il n'existe pas déjà
