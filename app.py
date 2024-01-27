@@ -88,4 +88,5 @@ def scrape_category_pages(base_url):
 base_url = 'https://books.toscrape.com/catalogue/category/books/mystery_3'
 # Créez le dossier "generated_datas" s'il n'existe pas déjà
 os.makedirs("generated_datas", exist_ok=True)
+os.makedirs("fetched_images", exist_ok=True)
 scrape_category_pages(base_url)
