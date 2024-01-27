@@ -6,18 +6,40 @@ Assurez-vous d'avoir Python installé sur votre système.
 
 ## Étapes pour exécuter le code avec succès
 
+**Environnement virtuel**
+
+Pour exécuter ce code, vous devez d'abord configurer un environnement virtuel pour isoler les dépendances. Suivez ces étapes :
+
+- Créer l'environnement virtuel :
+  - Ouvrez une fenêtre de terminal.
+  - Naviguez vers le répertoire du projet.
+  - Exécutez la commande suivante pour installer les dépendances :
+
+```
+python -m venv venv
+```
+
+- Activer l'environnement virtuel :
+
+Sur Windows :
+
+```
+.\venv\Scripts\activate
+```
+
+Sur Linux/macOS :
+
+```
+source venv/bin/activate
+```
+
 1. **Installation des dépendances**
 
-   - Ouvrez une fenêtre de terminal.
-   - Naviguez vers le répertoire du projet.
+   - Toujours sur le repertoire du projet
    - Exécutez la commande suivante pour installer les dépendances :
 
      ```
      pip install -r requirements.txt
-     ```
-
-     ```activer l'environnement de developpement avec la commande
-     source venv/bin/activate
      ```
 
 2. **Exécution du script**
@@ -33,9 +55,10 @@ Assurez-vous d'avoir Python installé sur votre système.
    - Le script va récupérer les informations des livres dans la catégorie de mystère depuis le site "https://books.toscrape.com/".
    - Les informations seront sauvegardées dans le fichier `generated_datas/book_info.txt`.
    - Les images des livres seront téléchargées et sauvegardées dans le dossier `fetched_images`.
+   - Les fichiers CSV seront générés dans le dossier `CSVs`.
 
 4. **Notes**
-   - Si le dossier `generated_datas` n'existe pas, le script le créera automatiquement.
+   - Si les dossiers `generated_datas`, `fetched_images`, ou `CSVs` n'existent pas, le script les créeras automatiquement.
 
 ## Structure du projet
 
