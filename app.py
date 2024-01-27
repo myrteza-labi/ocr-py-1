@@ -23,7 +23,7 @@ def save_image(image_url, image_name):
     file_path = os.path.join("fetched_images", image_name)
 
     if os.path.exists(file_path):
-        os.remove(file_path)  # Supprimer le fichier existant
+        os.remove(file_path)
 
     response = requests.get(image_url)
     if response.status_code == 200:
@@ -42,7 +42,6 @@ def save_book_info_csv(book_info, file_path):
     with open(file_path, 'a', encoding='utf-8', newline='') as csvfile:
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
-        # Écrivez les en-têtes une seule fois
         if os.stat(file_path).st_size == 0:
             writer.writeheader()
 
@@ -108,9 +107,8 @@ def scrape_category_pages(base_url):
         else:
             print(f"Plus de livre à scrapper")
             if response.status_code == 404:
-                break  # Arrêtez la boucle si la page demandée n'existe pas
+                break
 
-# Créez le dossier "CSVs" s'il n'existe pas déjà
 os.makedirs("CSVs", exist_ok=True)
 os.makedirs("fetched_images", exist_ok=True)
 
